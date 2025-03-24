@@ -44,6 +44,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Debug Token
+        run: echo ${{ secrets.SONAR_TOKEN }}
+
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
