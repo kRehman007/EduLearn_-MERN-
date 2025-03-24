@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-
+  workflow_dispatch:
 jobs:
   build_and_push:
     name: Build, Tag, and Push Docker Images
@@ -47,3 +47,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+          args: >
+            -Dsonar.projectKey=kRehman007_EduLearn_-MERN-
+            -Dsonar.organization=kRehman007
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.sources=.
+            -Dsonar.exclusions=**/node_modules/**, **/*.test.js, **/dist/**
+            -Dsonar.sourceEncoding=UTF-8
