@@ -6,10 +6,14 @@ services:
     container_name: backend
     ports:
       - "5001:5001"
-    env_file:
-      - ./backend/.env
-    # environment:
-    #   - MONGO_URI=mongodb://mongo:27017/mydatabase
+    environment:
+      - FLASH_SESSION_SECRET=X9d9kLD8z3nBvQ68jR3FhV2p0M4yNkT5YwLq7Xs
+      - JWT_SECRET="superman345098752@super"
+      - MY_PASS="xrmf fyjs umcj yvuk"
+      - MY_EMAIL="kashisial2327@gmail.com"
+      - MONGODB_URL= "mongodb://mongo:27017/learningplatform"
+      - ADMIN_EMAIL="kashisial2327@gmail.com"
+
     depends_on:
       - mongo
 

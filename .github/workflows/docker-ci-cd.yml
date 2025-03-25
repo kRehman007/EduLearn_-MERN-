@@ -21,11 +21,11 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
 
-      # - name: Install Docker Compose
-      #   run: sudo apt-get update && sudo apt-get install -y docker-compose
+      - name: Install Docker Compose
+        run: sudo apt-get update && sudo apt-get install -y docker-compose
 
-      # - name: Start Application with Docker Compose
-      #   run: docker-compose up --build -d
+      - name: Start Application with Docker Compose
+        run: docker-compose up --build -d
 
   sonar:
     name: SonarQube Code Analysis
@@ -65,7 +65,7 @@ jobs:
           docker run --network="host" -t owasp/zap2docker-stable zap-api-scan.py \
            -t http://host.docker.internal:5001 -r zap_report.html
       - name: Upload ZAP Scan Report
-        uses: ~/.github/actions/upload-artifact
+        uses: actions/upload-artifact@v3
         with:
           name: zap-security-report
           path: zap_report.html
