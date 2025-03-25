@@ -64,7 +64,9 @@ jobs:
       - name: OWASP ZAP Scan
         run: |
           docker run --network="host" -t ghcr.io/zaproxy/zaproxy zap-api-scan.py \
-            -t http://host.docker.internal:5001 -r zap_report.html
+             -t https://example.com/openapi.json \
+             -f openapi \
+             -r zap_report.html
 
       - name: Upload ZAP Scan Report
         uses: actions/upload-artifact@v4 # ✅ Updated to v4
