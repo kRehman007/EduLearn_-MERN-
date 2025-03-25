@@ -64,7 +64,7 @@ jobs:
       - name: OWASP ZAP Scan
         run: |
           docker run --network="host" -t ghcr.io/zaproxy/zaproxy zap-api-scan.py \
-             -t https://example.com/openapi.json \
+             -t http://localhost:5001/openapi.json \
              -f openapi \
              -r zap_report.html
 
