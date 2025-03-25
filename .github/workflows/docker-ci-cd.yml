@@ -64,7 +64,7 @@ jobs:
       - name: OWASP ZAP Scan
         run: |
           docker run --network="host" -t ghcr.io/zaproxy/zaproxy zap-baseline.py \
-            -t http://localhost:5001 \  # ✅ Replace with your backend's base URL
+            -t http://host.docker.internal:5001 \  # ✅ Replace with your backend's base URL
             -r zap_report.html \
             -I -l WARN -T 5
 
