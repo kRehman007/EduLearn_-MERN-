@@ -6,13 +6,14 @@ import Rating from "@mui/material/Rating";
 import { useGetAllRatingsQuery } from "../../Redux/API/courseAPI";
 import { Link, useParams } from "react-router-dom";
 import LoaderIcon from "../Loader";
+import useUserAuth from "../Hooks/useUserAuth";
 
 function ReviewAndRatings() {
   const params = useParams();
   const [showComment, setShowComment] = useState(false);
   const { data, isLoading } = useGetAllRatingsQuery(params.id);
-  console.log("data", data);
-  console.log(showComment);
+  const { user } = useUserAuth();
+  console.log(user?.fullname);
 
   if (isLoading) {
     return <LoaderIcon />;
@@ -71,7 +72,10 @@ function ReviewAndRatings() {
                 className="border rounded-md p-3 shadow-lg"
               >
                 <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                  <Avatar src="/broken-image.jpg" />
+                  <Avatar
+                    alt={user?.fullname}
+                    src={`https://avatar.iran.liara.run/public/boy?username=${user?.fullname}`}
+                  />
                   <Typography sx={{ color: "#e91367", fontSize: "14px" }}>
                     {comment.created_by}
                   </Typography>

@@ -12,7 +12,7 @@ import {
 } from "../Redux/API/courseAPI";
 import useUserAuth from "./Hooks/useUserAuth";
 import Toast from "./Toast";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const schema = z.object({
   rating: z.number().min(1, "Please provide a rating..."),
@@ -31,7 +31,6 @@ const style = {
 const RatingModal = ({ open, handleClose, refetchRatings }) => {
   const params = useParams();
   const { refetch } = useGetSingleStudentQuery({ id: params.id });
-  const navigate = useNavigate();
   const [message, setMessage] = useState(null);
   const { user } = useUserAuth();
   const [addRating] = useAddRatingMutation();
@@ -51,9 +50,9 @@ const RatingModal = ({ open, handleClose, refetchRatings }) => {
 
   const onSubmit = async (data) => {
     try {
-      console.log("data", data);
       const formData = { ...data, userID: user?.id, courseID: params.id };
       const response = await addRating(formData).unwrap();
+      console.log("response", response);
       setMessage(response?.message);
       reset();
       handleClose();
@@ -80,7 +79,7 @@ const RatingModal = ({ open, handleClose, refetchRatings }) => {
               component="h2"
               sx={{ color: "#673ab7" }}
             >
-              Leave your Rviews
+              Leave your Reviews
             </Typography>
             <div className="flex justify-center flex-col gap-1 mt-7">
               <Controller

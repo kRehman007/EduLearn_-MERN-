@@ -39,7 +39,6 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await userLogIn(data).unwrap();
-      console.log("res", response);
       setUser(response?.user);
       reset();
       navigate("/");
